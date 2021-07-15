@@ -1,0 +1,20 @@
+sudo -u hdfs spark2-submit  
+--class com.affinion.gce.in.summary.gooddata.RunPostLoadJobs  
+--num-executors 8 
+--driver-memory 4g 
+--executor-memory 4g 
+--executor-cores 2  
+--conf spark.yarn.executor.memoryOverhead=1024 
+--conf spark.sql.shuffle.partitions=1000  
+--conf spark.default.parallelism=1000  
+hdfs://ip-10-222-113-28.eu-west-1.compute.internal:8020/user/datalake/Incentive_Networks/S3ScheduledJobDaily/S3OrderJobs.jar
+
+
+---------------
+
+sqoop import 
+--connect jdbc:mysql://localhost/employees 
+--username edureka 
+--table employees 
+--m 1 
+--target-dir /employees
